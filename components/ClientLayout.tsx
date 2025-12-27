@@ -2,8 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Calendar, Trophy, Users, Globe as GlobeIcon, UsersRound, History, Menu, X, Languages, LogIn, LogOut, Database, UserCircle } from 'lucide-react';
 import { LEAGUE_NAME } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,7 +10,8 @@ import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const pathname = usePathname();
+  const location = useLocation();
+  const pathname = location.pathname;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -84,7 +84,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               return (
                 <Link
                   key={item.path}
-                  href={item.path}
+                  to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-200 group ${
                     isActive 
@@ -150,7 +150,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               </button>
               
               <div className="bg-slate-950/50 px-3 py-2 rounded-xl border border-slate-800/50 flex flex-col justify-center text-center">
-                <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest leading-none mb-1">{t.serverStatus}</span>
+                <span className="text-xs font-black text-slate-600 uppercase tracking-widest leading-none mb-1">{t.serverStatus}</span>
                 <p className="text-[9px] text-green-500 font-bold truncate">● {t.operational}</p>
               </div>
             </div>

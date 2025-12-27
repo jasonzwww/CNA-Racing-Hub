@@ -274,37 +274,71 @@ export const GT3_R1_RESULT: IRacingEventResult = {
     {
       simsession_type_name: "Race",
       results: [
-        { cust_id: 1177810, display_name: "Songtao Bai", finish_position: 0, starting_position: 3, car_name: "Aston Martin Vantage GT3 EVO", car_id: 206, best_lap_time: 1029223, average_lap: 1052193, incidents: 9, interval: 0, oldi_rating: 3057, newi_rating: 3057, laps_complete: 23, laps_lead: 13, league_points: 24 },
+        { cust_id: 1177810, display_name: "Songtao Bai", finish_position: 0, starting_position: 3, car_name: "Aston Martin Vantage GT3 EVO", car_id: 206, best_lap_time: 1029223, average_lap: 1052193, incidents: 9, interval: 0, oldi_rating: 3057, newi_rating: 3057, laps_complete: 23, laps_lead: 13, league_points: 25 },
         { cust_id: 632058, display_name: "Handa Yang", finish_position: 1, starting_position: 2, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1032715, average_lap: 1056499, incidents: 13, interval: 99014, oldi_rating: 2985, newi_rating: 2985, laps_complete: 23, laps_lead: 2, league_points: 18 },
         { cust_id: 417177, display_name: "Yao Jianzhong", finish_position: 2, starting_position: 4, car_name: "Ferrari 296 GT3", car_id: 173, best_lap_time: 1036434, average_lap: 1064270, incidents: 5, interval: 277763, oldi_rating: 2152, newi_rating: 2152, laps_complete: 23, laps_lead: 0, league_points: 15 },
         { cust_id: 1245968, display_name: "Suncheng Shi", finish_position: 3, starting_position: 0, car_name: "Chevrolet Corvette Z06 GT3.R", car_id: 184, best_lap_time: 1034734, average_lap: 1070852, incidents: 19, interval: 429106, oldi_rating: 2073, newi_rating: 2073, laps_complete: 23, laps_lead: 8, league_points: 12 },
-        { cust_id: 1219984, display_name: "Li Xina", finish_position: 4, starting_position: 7, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1046178, average_lap: 1079596, incidents: 16, interval: 630310, oldi_rating: 1008, newi_rating: 1008, laps_complete: 23, laps_lead: 0, league_points: 10 },
-        { cust_id: 1362776, display_name: "Shuming Shi", finish_position: 5, starting_position: 5, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1039917, average_lap: 1083836, incidents: 19, interval: 727805, oldi_rating: 1685, newi_rating: 1685, laps_complete: 23, laps_lead: 0, league_points: 8 },
-        { cust_id: 1127717, display_name: "Zile Wang", finish_position: 6, starting_position: 6, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1044088, average_lap: 1085668, incidents: 23, interval: 769949, oldi_rating: 1946, newi_rating: 1946, laps_complete: 23, laps_lead: 0, league_points: 7 },
-        { cust_id: 1388477, display_name: "Tommy John", finish_position: 7, starting_position: 9, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1044534, average_lap: 1100651, incidents: 18, interval: 1114576, oldi_rating: 734, newi_rating: 734, laps_complete: 23, laps_lead: 0, league_points: 6 },
-        { cust_id: 1371817, display_name: "Jiamian Gui", finish_position: 8, starting_position: 8, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1055611, average_lap: 1115139, incidents: 22, interval: -1, oldi_rating: 1409, newi_rating: 1409, laps_complete: 22, laps_lead: 0, league_points: 5 },
-        { cust_id: 482887, display_name: "Ethan Wang", finish_position: 9, starting_position: 1, car_name: "BMW M4 GT3 EVO", car_id: 132, best_lap_time: 1035307, average_lap: 1087617, incidents: 24, interval: -1, oldi_rating: 2614, newi_rating: 2614, laps_complete: 21, laps_lead: 0, league_points: 4 }
+        { cust_id: 1219984, display_name: "Li Xina", finish_position: 4, starting_position: 7, car_name: "Porsche 911 GT3 R (992)", car_id: 169, best_lap_time: 1046178, average_lap: 1079596, incidents: 16, interval: 630310, oldi_rating: 1008, newi_rating: 1008, laps_complete: 23, laps_lead: 0, league_points: 10 }
       ]
     }
   ]
 };
 
-export const MOCK_RACES: Race[] = []; // Initialized elsewhere in logic if needed
+export const MOCK_RACES: Race[] = [
+  {
+    id: '26S1-GT3-1',
+    seasonId: '26S1',
+    seriesId: 'GT3_OPEN',
+    seriesName: 'GT3 Open',
+    track: 'Autodromo Internazionale Enzo e Dino Ferrari',
+    dateTime: '2025-01-15T20:00:00Z',
+    status: RaceStatus.COMPLETED,
+    winner: 'Songtao Bai',
+    image: 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop',
+    subsessionId: 82056585
+  },
+  {
+    id: '26S1-GT3-2',
+    seasonId: '26S1',
+    seriesId: 'GT3_OPEN',
+    seriesName: 'GT3 Open',
+    track: 'Spa-Francorchamps',
+    dateTime: new Date(Date.now() + 86400000 * 3).toISOString(), // 3 days from now
+    status: RaceStatus.UPCOMING,
+    image: 'https://images.unsplash.com/photo-1552066344-24632e2221bc?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: '26S1-ROOK-1',
+    seasonId: '26S1',
+    seriesId: 'ROOKIES',
+    seriesName: 'Rookies',
+    track: 'Mazda Raceway Laguna Seca',
+    dateTime: '2025-01-12T18:00:00Z',
+    status: RaceStatus.COMPLETED,
+    winner: 'Sarah Miller',
+    image: 'https://images.unsplash.com/photo-1594739524720-6d0800769363?q=80&w=800&auto=format&fit=crop'
+  }
+];
 
 export const MOCK_DRIVERS: Driver[] = [
-  { id: '1177810', name: 'Alex Simmons', iRating: 4250, safetyRating: 'A 4.99', country: 'United Kingdom', lat: 51.5074, lng: -0.1278, status: 'Online', avatar: 'https://i.pravatar.cc/150?u=alex', cnaDriverNumber: '01' },
-  { id: '632058', name: 'Marco Rossi', iRating: 3800, safetyRating: 'A 3.45', country: 'Italy', lat: 41.9028, lng: 12.4964, status: 'Racing', avatar: 'https://i.pravatar.cc/150?u=marco', cnaDriverNumber: '02' },
-  { id: '417177', name: 'Yuki Tanaka', iRating: 5100, safetyRating: 'Pro 4.0', country: 'Japan', lat: 35.6762, lng: 139.6503, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=yuki', cnaDriverNumber: '03' },
-  { id: '1245968', name: 'Sarah Miller', iRating: 2950, safetyRating: 'B 2.80', country: 'USA', lat: 34.0522, lng: -118.2437, status: 'Online', avatar: 'https://i.pravatar.cc/150?u=sarah', cnaDriverNumber: '04' },
-  { id: '1219984', name: 'Bruno Santos', iRating: 4100, safetyRating: 'A 4.20', country: 'Brazil', lat: -23.5505, lng: -46.6333, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=bruno', cnaDriverNumber: '05' },
-  { id: '1362776', name: 'Chen Wei', iRating: 3200, safetyRating: 'B 3.15', country: 'China', lat: 31.2304, lng: 121.4737, status: 'Racing', avatar: 'https://i.pravatar.cc/150?u=chen', cnaDriverNumber: '06' },
+  { id: '1177810', name: 'Songtao Bai', iRating: 4250, safetyRating: 'A 4.99', country: 'China', lat: 39.9042, lng: 116.4074, status: 'Online', avatar: 'https://i.pravatar.cc/150?u=songtao', cnaDriverNumber: '01' },
+  { id: '632058', name: 'Handa Yang', iRating: 3800, safetyRating: 'A 3.45', country: 'China', lat: 31.2304, lng: 121.4737, status: 'Racing', avatar: 'https://i.pravatar.cc/150?u=handa', cnaDriverNumber: '08' },
+  { id: '417177', name: 'Yao Jianzhong', iRating: 5100, safetyRating: 'Pro 4.0', country: 'China', lat: 22.3193, lng: 114.1694, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=jianzhong', cnaDriverNumber: '24' },
+  { id: '1245968', name: 'Sarah Miller', iRating: 2950, safetyRating: 'B 2.80', country: 'USA', lat: 34.0522, lng: -118.2437, status: 'Online', avatar: 'https://i.pravatar.cc/150?u=sarah', cnaDriverNumber: '42' },
+  { id: '1219984', name: 'Li Xina', iRating: 4100, safetyRating: 'A 4.20', country: 'China', lat: 30.2741, lng: 120.1551, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=xina', cnaDriverNumber: '05' },
 ];
 
 export const GUEST_DRIVERS: Driver[] = [
   { id: 'g1', name: 'Guest Racer #117', iRating: 1500, safetyRating: 'R 2.48', country: 'Unknown', lat: 40.7128, lng: -74.0060, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=g1', cnaDriverNumber: '??' },
   { id: 'g2', name: 'Guest Racer #042', iRating: 1200, safetyRating: 'D 3.10', country: 'Unknown', lat: 48.8566, lng: 2.3522, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=g2', cnaDriverNumber: '??' },
-  { id: 'g3', name: 'Guest Racer #999', iRating: 1800, safetyRating: 'C 2.90', country: 'Unknown', lat: 35.6895, lng: 139.6917, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=g3', cnaDriverNumber: '??' },
 ];
 
 export const MOCK_ENDURANCE_TEAMS: EnduranceTeam[] = [];
-export const MOCK_STANDINGS: Standing[] = [];
+
+export const MOCK_STANDINGS: Standing[] = [
+  { driverId: '1177810', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 145, wins: 3, podiums: 5, racesRun: 6 },
+  { driverId: '632058', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 120, wins: 1, podiums: 4, racesRun: 6 },
+  { driverId: '417177', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 110, wins: 0, podiums: 3, racesRun: 6 },
+  { driverId: '1245968', seriesId: 'ROOKIES', seasonId: '26S1', points: 85, wins: 2, podiums: 3, racesRun: 4 },
+  { driverId: '1219984', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 95, wins: 1, podiums: 2, racesRun: 5 }
+];

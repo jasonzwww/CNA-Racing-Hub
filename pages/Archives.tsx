@@ -75,7 +75,7 @@ const SeasonCard: React.FC<{ season: Season, onClick: () => void, language: stri
 
 const Archives: React.FC = () => {
   const { t, language } = useLanguage();
-  const { visibleDrivers } = useAuth();
+  const { allDrivers } = useAuth();
   const [selectedSeason, setSelectedSeason] = useState<Season | null>(null);
   const [activeTab, setActiveTab] = useState<'HOF' | 'RACES'>('HOF');
   const [activeSeries, setActiveSeries] = useState<SeriesId>('GT3_OPEN');
@@ -101,7 +101,7 @@ const Archives: React.FC = () => {
       .slice(0, 3);
   };
 
-  const getDriver = (id: string): Driver | undefined => visibleDrivers.find(d => d.id === id);
+  const getDriver = (id: string): Driver | undefined => allDrivers.find(d => d.id === id);
 
   const getVisibleRaces = (): (Race | LocalManagedRace)[] => {
     if (!selectedSeason) return [];
@@ -297,7 +297,7 @@ const Archives: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {activeSeasons.map(season => (
-                  <SeasonCard key={season.id} season={season} drivers={visibleDrivers} language={language} onClick={() => setSelectedSeason(season)} />
+                  <SeasonCard key={season.id} season={season} drivers={allDrivers} language={language} onClick={() => setSelectedSeason(season)} />
                 ))}
               </div>
             </section>
@@ -310,7 +310,7 @@ const Archives: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {archivedSeasons.map(season => (
-                <SeasonCard key={season.id} season={season} drivers={visibleDrivers} language={language} onClick={() => setSelectedSeason(season)} />
+                <SeasonCard key={season.id} season={season} drivers={allDrivers} language={language} onClick={() => setSelectedSeason(season)} />
               ))}
             </div>
           </section>

@@ -8,7 +8,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Standings: React.FC = () => {
   const { t } = useLanguage();
-  const { visibleDrivers } = useAuth();
+  const { allDrivers } = useAuth();
   const [activeSeries, setActiveSeries] = useState<SeriesId>('GT3_OPEN');
 
   const filteredStandings = MOCK_STANDINGS
@@ -54,11 +54,9 @@ const Standings: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-slate-800/50">
               {filteredStandings.map((standing, index) => {
-                const driver = visibleDrivers.find(d => d.id === standing.driverId);
+                const driver = allDrivers.find(d => d.id === standing.driverId);
                 const rank = index + 1;
                 
-                // If we're showing guest drivers but standing is for a member ID,
-                // we'll just show the standing info with a generic "League Member" name
                 const displayName = driver ? driver.name : `League Member #${standing.driverId.slice(-4)}`;
                 const displayAvatar = driver ? driver.avatar : 'https://i.pravatar.cc/150?u=member';
 
@@ -79,7 +77,7 @@ const Standings: React.FC = () => {
                         <img src={displayAvatar} className="w-10 h-10 rounded-lg border border-slate-800" alt="Avatar" />
                         <div>
                           <div className="font-bold text-white group-hover:text-red-500 transition-colors">{displayName}</div>
-                          <div className="text-[10px] text-slate-500 uppercase tracking-widest">{driver?.country || 'Confidential'}</div>
+                          <div className="text-[10px] text-slate-500 uppercase tracking-widest">{driver?.country || 'CNA Member'}</div>
                         </div>
                       </div>
                     </td>
@@ -103,8 +101,8 @@ const Standings: React.FC = () => {
           <Star className="text-red-600" size={24} />
         </div>
         <div>
-          <h4 className="font-bold text-white">Season 4 Mid-Point</h4>
-          <p className="text-sm text-slate-500">Points are updated after every race weekend. 4 drop weeks remaining.</p>
+          <h4 className="font-bold text-white">Season 26S1 Progress</h4>
+          <p className="text-sm text-slate-500">Points are updated after every race weekend. Elite competition is live.</p>
         </div>
         <button className="ml-auto flex items-center gap-2 text-xs font-bold text-slate-400 hover:text-white uppercase transition-colors">
           View Scoring Rules <ChevronRight size={14} />

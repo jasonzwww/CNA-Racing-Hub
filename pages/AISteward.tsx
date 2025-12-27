@@ -2,13 +2,13 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 const AISteward: React.FC = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   useEffect(() => {
-    router.push('/');
-  }, [router]);
+    navigate('/');
+  }, [navigate]);
   return null;
 };
 

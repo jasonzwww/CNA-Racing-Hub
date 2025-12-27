@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { Upload, FileJson, Image as ImageIcon, Save, Trash2, CheckCircle, AlertCircle, Database, ChevronRight, MapPin, Calendar, Flag, Trophy, ShieldAlert, Users, Hash, Search, Key, ShieldCheck, UserPlus, ShieldX, Clock, Plus, Loader2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
@@ -16,7 +16,7 @@ const SCHEDULE_STORAGE_KEY = 'cna_managed_schedule';
 const Management: React.FC = () => {
   const { t, language } = useLanguage();
   const { user, isAuthenticated, allDrivers, updateDriverInfo, admins, addAdmin, removeAdmin } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
   
   const [managedRaces, setManagedRaces] = useState<LocalManagedRace[]>([]);
   const [managedSchedule, setManagedSchedule] = useState<Race[]>([]);
@@ -42,7 +42,7 @@ const Management: React.FC = () => {
 
   useEffect(() => {
     if (!isAuthenticated || !user?.isAdmin) {
-      router.push('/');
+      navigate('/');
       return;
     }
 
@@ -55,7 +55,7 @@ const Management: React.FC = () => {
     if (savedSchedule) {
       try { setManagedSchedule(JSON.parse(savedSchedule)); } catch (e) {}
     }
-  }, [isAuthenticated, user, router]);
+  }, [isAuthenticated, user, navigate]);
 
   if (!isAuthenticated || !user?.isAdmin) {
     return null;
