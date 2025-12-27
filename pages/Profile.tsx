@@ -6,17 +6,18 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { MOCK_STANDINGS, MOCK_ENDURANCE_TEAMS, MOCK_RACES } from '../constants';
 import { Trophy, Activity, Shield, MapPin, Users, Car, Flag, History, ArrowRight, Hash } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { formatLocalDateOnly } from '../utils/racingUtils';
 
 const Profile: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
   const { t, language } = useLanguage();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   if (!isAuthenticated || !user) {
     if (typeof window !== 'undefined') {
-      navigate('/');
+      router.push('/');
     }
     return null;
   }
@@ -96,7 +97,7 @@ const Profile: React.FC = () => {
             <h3 className="text-lg font-racing font-bold text-white uppercase italic mb-6 flex items-center gap-3"><Users className="text-red-500" /> {t.myTeams}</h3>
             <div className="space-y-4">
               {myTeams.length > 0 ? myTeams.map(team => (
-                <Link to="/matchmaking" key={team.id} className="block group">
+                <Link href="/matchmaking" key={team.id} className="block group">
                   <div className="p-4 bg-slate-950/40 rounded-xl border border-slate-800/50 group-hover:border-red-600/50 transition-all">
                     <div className="flex items-center justify-between mb-2"><h4 className="font-bold text-white text-sm">{team.name}</h4><span className="text-[10px] font-black text-red-500 uppercase">{team.targetGoal}</span></div>
                     <div className="flex items-center gap-3 text-[10px] text-slate-500 font-bold uppercase"><Car size={12} /> {team.car}</div>

@@ -1,12 +1,14 @@
 
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+'use client';
+
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AISteward: React.FC = () => {
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    navigate('/');
-  }, [navigate]);
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/');
+  }, [router]);
   return null;
 };
 
