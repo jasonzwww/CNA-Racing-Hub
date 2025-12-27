@@ -1,0 +1,7 @@
+{
+  "name": "CNA Racing Hub",
+  "description": "The official portal for CNA Racing league in iRacing. Featuring race schedules, real-time countdowns, driver statistics, a global driver map, and endurance team matchmaking.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
