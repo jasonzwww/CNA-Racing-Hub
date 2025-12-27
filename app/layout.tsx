@@ -1,11 +1,12 @@
 
-// Fix: Use direct import for Metadata and ensure React namespace is valid
+// Fix: Re-implement RootLayout to support the shared ClientLayout's router dependencies
 import React from 'react';
 import { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
 import { AuthProvider } from "../context/AuthContext";
 import ClientLayout from "../components/ClientLayout";
+import ClientRouter from "../components/ClientRouter";
 
 export const metadata: Metadata = {
   title: "CNA Racing Hub",
@@ -25,9 +26,11 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <AuthProvider>
-            <ClientLayout>
-              {children}
-            </ClientLayout>
+            <ClientRouter>
+              <ClientLayout>
+                {children}
+              </ClientLayout>
+            </ClientRouter>
           </AuthProvider>
         </LanguageProvider>
       </body>

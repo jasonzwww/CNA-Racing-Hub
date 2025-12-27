@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Calendar, Trophy, Users, Globe as GlobeIcon, UsersRound, History, Menu, X, Languages, LogIn, LogOut, Database, UserCircle } from 'lucide-react';
 import { LEAGUE_NAME } from '../constants';
@@ -10,7 +10,14 @@ import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const location = useLocation();
+  // Safe useLocation that doesn't crash if Router is missing (though we've added it to layout)
+  let location;
+  try {
+    location = useLocation();
+  } catch (e) {
+    location = { pathname: '/' };
+  }
+  
   const pathname = location.pathname;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -51,7 +58,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               <LogIn size={20} />
             </button>
           ) : (
-            <Link href="/profile">
+            <Link to="/profile">
               <img src={user?.avatar} className="w-8 h-8 rounded-full border border-red-500" alt="Avatar" />
             </Link>
           )}
@@ -126,7 +133,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 </div>
                 <div className="grid grid-cols-2 border-t border-slate-800/50">
                   <Link 
-                    href="/profile"
+                    to="/profile"
                     className="py-2.5 flex items-center justify-center gap-2 text-slate-500 hover:text-white hover:bg-slate-900 transition-colors border-r border-slate-800/50"
                   >
                     <UserCircle size={14} />
