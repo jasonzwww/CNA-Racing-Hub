@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Upload, FileJson, Image as ImageIcon, Save, Trash2, CheckCircle, AlertCircle, Database, ChevronRight, MapPin, Calendar, Flag, Trophy, ShieldAlert, Users, Hash, Search, Key, ShieldCheck, UserPlus, ShieldX, Clock, Plus, Loader2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
@@ -16,7 +16,7 @@ const SCHEDULE_STORAGE_KEY = 'cna_managed_schedule';
 const Management: React.FC = () => {
   const { t, language } = useLanguage();
   const { user, isAuthenticated, allDrivers, updateDriverInfo, admins, addAdmin, removeAdmin } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter();
   
   const [managedRaces, setManagedRaces] = useState<LocalManagedRace[]>([]);
   const [managedSchedule, setManagedSchedule] = useState<Race[]>([]);
@@ -42,7 +42,7 @@ const Management: React.FC = () => {
 
   useEffect(() => {
     if (!isAuthenticated || !user?.isAdmin) {
-      navigate('/');
+      router.push('/');
       return;
     }
 
@@ -55,7 +55,7 @@ const Management: React.FC = () => {
     if (savedSchedule) {
       try { setManagedSchedule(JSON.parse(savedSchedule)); } catch (e) {}
     }
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, user, router]);
 
   if (!isAuthenticated || !user?.isAdmin) {
     return null;
@@ -270,7 +270,7 @@ const Management: React.FC = () => {
               <form onSubmit={handleAddAdmin} className="flex gap-4"><input type="text" placeholder={t.adminIdPlaceholder} value={newAdminId} onChange={(e) => setNewAdminId(e.target.value)} className="flex-1 bg-slate-950 border border-slate-800 rounded-2xl py-4 px-6 text-white outline-none" /><button type="submit" className="px-8 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl uppercase tracking-widest transition-all">{t.addAdmin}</button></form>
               <div className="space-y-2">
                  {admins.map(adminId => (
-                   <div key={adminId} className="bg-slate-950/50 rounded-2xl border border-slate-800 p-4 flex items-center justify-between"><div className="text-white font-bold">ID: {adminId}</div>{user?.id !== adminId && <button onClick={() => removeAdmin(adminId)} className="text-slate-600 hover:text-red-500"><ShieldX size={20} /></button>}</div>
+                   <div key={adminId} className="bg-slate-950/50 rounded-2xl border border-slate-800 p-4 flex items-center justify-between"><div className="text-white font-bold">ID: {adminId}</div>{router && user?.id !== adminId && <button onClick={() => removeAdmin(adminId)} className="text-slate-600 hover:text-red-500"><ShieldX size={20} /></button>}</div>
                  ))}
               </div>
            </div>

@@ -1,8 +1,9 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Calendar, Trophy, Users, Globe as GlobeIcon, UsersRound, History, Menu, X, Languages, LogIn, LogOut, Database, UserCircle } from 'lucide-react';
 import { LEAGUE_NAME } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
@@ -10,15 +11,7 @@ import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 
 const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Safe useLocation that doesn't crash if Router is missing (though we've added it to layout)
-  let location;
-  try {
-    location = useLocation();
-  } catch (e) {
-    location = { pathname: '/' };
-  }
-  
-  const pathname = location.pathname;
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -58,7 +51,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               <LogIn size={20} />
             </button>
           ) : (
-            <Link to="/profile">
+            <Link href="/profile">
               <img src={user?.avatar} className="w-8 h-8 rounded-full border border-red-500" alt="Avatar" />
             </Link>
           )}
@@ -91,7 +84,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               return (
                 <Link
                   key={item.path}
-                  to={item.path}
+                  href={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-200 group ${
                     isActive 
@@ -133,7 +126,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 </div>
                 <div className="grid grid-cols-2 border-t border-slate-800/50">
                   <Link 
-                    to="/profile"
+                    href="/profile"
                     className="py-2.5 flex items-center justify-center gap-2 text-slate-500 hover:text-white hover:bg-slate-900 transition-colors border-r border-slate-800/50"
                   >
                     <UserCircle size={14} />

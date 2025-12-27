@@ -1,12 +1,10 @@
 
-// Fix: Re-implement RootLayout to support the shared ClientLayout's router dependencies
 import React from 'react';
 import { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
 import { AuthProvider } from "../context/AuthContext";
 import ClientLayout from "../components/ClientLayout";
-import ClientRouter from "../components/ClientRouter";
 
 export const metadata: Metadata = {
   title: "CNA Racing Hub",
@@ -23,14 +21,12 @@ export default function RootLayout({
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body>
+      <body className="antialiased">
         <LanguageProvider>
           <AuthProvider>
-            <ClientRouter>
-              <ClientLayout>
-                {children}
-              </ClientLayout>
-            </ClientRouter>
+            <ClientLayout>
+              {children}
+            </ClientLayout>
           </AuthProvider>
         </LanguageProvider>
       </body>
