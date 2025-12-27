@@ -1,12 +1,12 @@
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 const AISteward: React.FC = () => {
-  const router = useRouter();
-  if (typeof window !== 'undefined') {
-    router.push('/');
-  }
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    navigate('/');
+  }, [navigate]);
   return null;
 };
 

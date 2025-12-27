@@ -9,7 +9,6 @@ import Archives from './pages/Archives';
 import Drivers from './pages/Drivers';
 import WorldMap from './pages/WorldMap';
 import EnduranceMatchmaking from './pages/EnduranceMatchmaking';
-import AISteward from './pages/AISteward';
 import Management from './pages/Management';
 import Profile from './pages/Profile';
 import { LanguageProvider } from './context/LanguageContext';
@@ -29,7 +28,6 @@ const App: React.FC = () => {
               <Route path="/drivers" element={<Drivers />} />
               <Route path="/map" element={<WorldMap />} />
               <Route path="/matchmaking" element={<EnduranceMatchmaking />} />
-              <Route path="/ai-steward" element={<AISteward />} />
               <Route path="/management" element={<Management />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>

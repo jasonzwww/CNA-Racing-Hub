@@ -1,4 +1,6 @@
 
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Upload, FileJson, Image as ImageIcon, Save, Trash2, CheckCircle, AlertCircle, Database, ChevronRight, MapPin, Calendar, Flag, Trophy, ShieldAlert, Users, Hash, Search, Key, ShieldCheck, UserPlus, ShieldX, Clock, Plus, Loader2 } from 'lucide-react';
@@ -56,7 +58,7 @@ const Management: React.FC = () => {
   }, [isAuthenticated, user, router]);
 
   if (!isAuthenticated || !user?.isAdmin) {
-    return null; // Handle via useEffect redirect
+    return null;
   }
 
   const handleJsonUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

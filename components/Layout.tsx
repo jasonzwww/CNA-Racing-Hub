@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Calendar, Trophy, Users, Globe as GlobeIcon, UsersRound, MessageSquare, History, Menu, X, Languages, LogIn, LogOut, Settings, Database, UserCircle } from 'lucide-react';
+import { LayoutDashboard, Calendar, Trophy, Users, Globe as GlobeIcon, UsersRound, History, Menu, X, Languages, LogIn, LogOut, Database, UserCircle } from 'lucide-react';
 import { LEAGUE_NAME } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
@@ -22,7 +22,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { label: t.drivers, icon: Users, path: '/drivers', adminOnly: false },
     { label: t.worldMap, icon: GlobeIcon, path: '/map', adminOnly: false },
     { label: t.enduranceFinder, icon: UsersRound, path: '/matchmaking', adminOnly: false },
-    { label: t.aiSteward, icon: MessageSquare, path: '/ai-steward', adminOnly: false },
     { label: t.management, icon: Database, path: '/management', adminOnly: true },
   ];
 

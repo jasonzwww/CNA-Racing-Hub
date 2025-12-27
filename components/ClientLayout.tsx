@@ -77,8 +77,8 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
             <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black opacity-80">{t.officialPortal}</p>
           </div>
 
-          {/* Nav Area - Increased space-y to 4 and padding to py-4 to fill gap */}
-          <nav className="flex-1 px-4 space-y-4 overflow-y-auto scrollbar-thin py-6">
+          {/* Nav Area */}
+          <nav className="flex-1 px-4 space-y-3 overflow-y-auto scrollbar-thin py-6">
             {filteredNavItems.map((item) => {
               const isActive = pathname === item.path;
               return (
