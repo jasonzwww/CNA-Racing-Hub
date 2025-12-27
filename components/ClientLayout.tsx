@@ -68,17 +68,17 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         md:translate-x-0 md:static md:block md:h-screen
       `}>
         <div className="flex flex-col h-full">
-          {/* Top Branding Section - Condensed */}
-          <div className="p-6 hidden md:block shrink-0">
-            <div className="flex items-center gap-2.5 mb-1">
-                <div className="w-9 h-9 bg-red-600 rounded-md flex items-center justify-center font-bold text-lg text-white italic transform -skew-x-12 shadow-[0_0_15px_rgba(220,38,38,0.4)]">CNA</div>
-                <h1 className="font-racing font-bold text-lg tracking-tighter leading-tight text-white">{LEAGUE_NAME}</h1>
+          {/* Top Branding Section */}
+          <div className="p-8 hidden md:block shrink-0">
+            <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 bg-red-600 rounded-md flex items-center justify-center font-bold text-xl text-white italic transform -skew-x-12 shadow-[0_0_15px_rgba(220,38,38,0.4)]">CNA</div>
+                <h1 className="font-racing font-bold text-xl tracking-tighter leading-tight text-white">{LEAGUE_NAME}</h1>
             </div>
             <p className="text-[10px] text-slate-500 uppercase tracking-widest font-black opacity-80">{t.officialPortal}</p>
           </div>
 
-          {/* Scrollable Nav Area - flex-1 with overflow */}
-          <nav className="flex-1 px-3 space-y-2.5 overflow-y-auto scrollbar-thin py-2">
+          {/* Nav Area - Increased space-y to 4 and padding to py-4 to fill gap */}
+          <nav className="flex-1 px-4 space-y-4 overflow-y-auto scrollbar-thin py-6">
             {filteredNavItems.map((item) => {
               const isActive = pathname === item.path;
               return (
@@ -86,13 +86,13 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                   key={item.path}
                   href={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 group ${
+                  className={`flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-200 group ${
                     isActive 
                       ? 'bg-red-600/10 text-red-500 border border-red-500/20 shadow-[0_0_20px_rgba(220,38,38,0.05)]' 
                       : 'text-slate-400 hover:bg-slate-800/50 hover:text-white border border-transparent'
                   }`}
                 >
-                  <item.icon size={20} className={isActive ? 'text-red-500' : 'group-hover:text-white transition-colors'} />
+                  <item.icon size={22} className={isActive ? 'text-red-500' : 'group-hover:text-white transition-colors'} />
                   <span className="font-bold text-sm tracking-tight">{item.label}</span>
                   {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.8)]" />}
                 </Link>
@@ -100,8 +100,8 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
             })}
           </nav>
 
-          {/* Fixed Footer Area - Condensed and Optimized for no-scroll visibility */}
-          <div className="p-4 border-t border-slate-800 space-y-3 bg-slate-900 shrink-0">
+          {/* Fixed Footer Area */}
+          <div className="p-4 border-t border-slate-800 space-y-4 bg-slate-900 shrink-0">
             {!isAuthenticated ? (
               <button 
                 onClick={() => setIsLoginModalOpen(true)}
@@ -112,7 +112,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               </button>
             ) : (
               <div className="bg-slate-950/80 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
-                <div className="p-3.5 flex items-center gap-3">
+                <div className="p-4 flex items-center gap-3">
                   <div className="relative shrink-0">
                     <img src={user?.avatar} className="w-10 h-10 rounded-xl border border-red-500/30" alt="User Avatar" />
                     <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-950" />
@@ -121,7 +121,6 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                     <p className="font-bold text-white text-xs truncate leading-none mb-1">{user?.name}</p>
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] text-red-500 font-black">{user?.iRating} iR</span>
-                      <span className="text-[10px] text-slate-500 font-bold uppercase">{user?.safetyRating}</span>
                     </div>
                   </div>
                 </div>
@@ -141,7 +140,7 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-2 gap-2">
               <button 
                 onClick={() => setLanguage(language === 'en' ? 'zh' : 'en')}
                 className="flex items-center justify-center gap-2 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-white transition-all border border-slate-800/50 bg-slate-950/30"
@@ -150,12 +149,9 @@ const ClientLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 <span className="text-[10px] font-black uppercase tracking-wider">{language === 'en' ? 'ZH' : 'EN'}</span>
               </button>
               
-              <div className="bg-slate-950/50 px-3 py-2 rounded-xl border border-slate-800/50 flex flex-col justify-center">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{t.serverStatus}</span>
-                </div>
-                <p className="text-[9px] text-slate-400 font-bold truncate">{t.operational}</p>
+              <div className="bg-slate-950/50 px-3 py-2 rounded-xl border border-slate-800/50 flex flex-col justify-center text-center">
+                <span className="text-[8px] font-black text-slate-600 uppercase tracking-widest leading-none mb-1">{t.serverStatus}</span>
+                <p className="text-[9px] text-green-500 font-bold truncate">● {t.operational}</p>
               </div>
             </div>
           </div>

@@ -11,7 +11,6 @@ export const TRANSLATIONS = {
     drivers: "Drivers",
     worldMap: "World Map",
     enduranceFinder: "Endurance Finder",
-    aiSteward: "AI Steward",
     archives: "Archives",
     management: "Management",
     profile: "My Profile",
@@ -132,7 +131,6 @@ export const TRANSLATIONS = {
     drivers: "车手库",
     worldMap: "世界地图",
     enduranceFinder: "耐力赛组队",
-    aiSteward: "AI 赛控干事",
     archives: "赛季归档",
     management: "后台管理",
     profile: "个人资料",
@@ -291,84 +289,7 @@ export const GT3_R1_RESULT: IRacingEventResult = {
   ]
 };
 
-// Helper to find track images
-const getTrackImage = (trackName: string) => {
-    const name = trackName.toLowerCase();
-    if (name.includes('imola')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('silverstone')) return 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('mans')) return 'https://images.unsplash.com/photo-1547482811-2364c3108920?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('spa')) return 'https://images.unsplash.com/photo-1594735294524-748956891637?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('daytona')) return 'https://images.unsplash.com/photo-1610452386470-3f41297e2909?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('suzuka')) return 'https://images.unsplash.com/photo-1594735294524-748956891637?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('monza')) return 'https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('nurburgring')) return 'https://images.unsplash.com/photo-1534083234862-2f369f64923e?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('okayama')) return 'https://images.unsplash.com/photo-1594735294524-748956891637?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('bathurst')) return 'https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('navarra')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('lime rock')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('summit')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('tsukuba')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('oulton')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('charlotte')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    if (name.includes('winton')) return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-    return 'https://images.unsplash.com/photo-1541443131876-44b03de101c5?q=80&w=800&auto=format&fit=crop';
-};
-
-const rawGt3Races = [
-    { round: 1, track: "Autodromo Internazionale Enzo e Dino Ferrari 伊莫拉", start: "2025-12-21T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)", note: "揭幕战" },
-    { round: 2, track: "Silverstone Circuit 银石", start: "2025-12-28T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 3, track: "Circuit des 24 Heures du Mans 勒芒", start: "2026-01-04T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 4, track: "Circuit de Spa-Francorchamps 斯帕", start: "2026-01-11T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 5, track: "Daytona International Speedway 代托纳", start: "2026-01-18T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 6, track: "Suzuka International Racing Course 铃鹿", start: "2026-01-25T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 7, track: "Autodromo Nazionale Monza 蒙扎", start: "2026-02-01T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 8, track: "Virginia International Raceway VIR", start: "2026-02-08T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 9, track: "Mount Panorama Circuit 巴瑟斯特", start: "2026-02-15T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 10, track: "Nürburgring Grand Prix Strecke 纽博格林GP", start: "2026-02-22T03:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 11, track: "Okayama International Circuit 冈山", start: "2026-03-01T04:59:00Z", format: "P(60分钟) + Q(20分钟) + R(40分钟,强制1停)" },
-    { round: 12, track: "Nürburgring Combined 纽博格林综合", start: "2026-03-08T04:59:00Z", format: "P(10分钟) + Q(30分钟) + R(80分钟)", note: "收官战" },
-];
-
-const rawRookieRaces = [
-    { round: 1, track: "Circuito de Navarra 纳瓦拉", start: "2025-12-27T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)", note: "揭幕战" },
-    { round: 2, track: "Lime Rock Park 莱姆洛克", start: "2026-01-03T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 3, track: "Summit Point Raceway 萨米特角", start: "2026-01-10T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 4, track: "Tsukuba Circuit 筑波", start: "2026-01-17T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 5, track: "Circuit de Lédenon 勒德农", start: "2026-01-24T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 6, track: "Oulton Park Circuit 奥尔顿公园", start: "2026-01-31T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 7, track: "Charlotte Motor Speedway 夏洛特", start: "2026-02-07T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 8, track: "Winton Motor Raceway 温顿", start: "2026-02-14T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 9, track: "Okayama International Circuit 冈山", start: "2026-02-21T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)" },
-    { round: 10, track: "Summit Point Raceway 萨米特角", start: "2026-02-28T04:00:00Z", format: "MX-5 Cup · P(20min) + Q(20min) + R(20min)", note: "收官战" },
-];
-
-const mappedGt3: Race[] = rawGt3Races.map(r => ({
-    id: `26S1-GT3-${r.round}`,
-    seasonId: '26S1',
-    seriesId: 'GT3_OPEN',
-    seriesName: 'CNA GT3 Open',
-    track: r.track,
-    dateTime: r.start,
-    status: r.round === 1 ? RaceStatus.COMPLETED : RaceStatus.UPCOMING,
-    winner: r.round === 1 ? "Songtao Bai" : undefined,
-    subsessionId: r.round === 1 ? 82056585 : undefined,
-    durationMinutes: r.round === 12 ? 80 : 40,
-    image: getTrackImage(r.track)
-}));
-
-const mappedRookie: Race[] = rawRookieRaces.map(r => ({
-    id: `26S1-ROOKIE-${r.round}`,
-    seasonId: '26S1',
-    seriesId: 'ROOKIES',
-    seriesName: 'CNA 新手赛',
-    track: r.track,
-    dateTime: r.start,
-    status: RaceStatus.UPCOMING,
-    durationMinutes: 20,
-    image: getTrackImage(r.track)
-}));
-
-export const MOCK_RACES: Race[] = [...mappedGt3, ...mappedRookie];
+export const MOCK_RACES: Race[] = []; // Initialized elsewhere in logic if needed
 
 export const MOCK_DRIVERS: Driver[] = [
   { id: '1177810', name: 'Alex Simmons', iRating: 4250, safetyRating: 'A 4.99', country: 'United Kingdom', lat: 51.5074, lng: -0.1278, status: 'Online', avatar: 'https://i.pravatar.cc/150?u=alex', cnaDriverNumber: '01' },
@@ -385,48 +306,5 @@ export const GUEST_DRIVERS: Driver[] = [
   { id: 'g3', name: 'Guest Racer #999', iRating: 1800, safetyRating: 'C 2.90', country: 'Unknown', lat: 35.6895, lng: 139.6917, status: 'Offline', avatar: 'https://i.pravatar.cc/150?u=g3', cnaDriverNumber: '??' },
 ];
 
-export const MOCK_ENDURANCE_TEAMS: EnduranceTeam[] = [
-  { 
-    id: 't1', 
-    name: 'CNA Apex Predators', 
-    series: 'Endurance Masters', 
-    car: 'Ferrari 296 GT3', 
-    raceName: '24 Hours of Spa',
-    eventDateTime: '2024-07-20T12:00:00Z',
-    timeslot: 1,
-    members: ['1177810', '417177'], 
-    recruiting: true, 
-    notes: 'Looking for 2 more consistent drivers for the night stints.',
-    creatorId: '1177810',
-    maxMembers: 4,
-    targetGoal: 'COMPETITIVE'
-  },
-  { 
-    id: 't2', 
-    name: 'Dragon Racing East', 
-    series: 'GT Endurance', 
-    car: 'BMW M4 GT3', 
-    raceName: '12 Hours of Sebring',
-    eventDateTime: '2024-03-16T18:00:00Z',
-    timeslot: 2,
-    members: ['1362776', '632058', '1219984'], 
-    recruiting: true, 
-    notes: 'Almost full! Just need one more A-class driver.',
-    creatorId: '1362776',
-    maxMembers: 4,
-    targetGoal: 'CASUAL'
-  }
-];
-
-export const MOCK_STANDINGS: Standing[] = [
-  { driverId: '1177810', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 24, wins: 1, podiums: 1, racesRun: 1 },
-  { driverId: '632058', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 18, wins: 0, podiums: 1, racesRun: 1 },
-  { driverId: '417177', seriesId: 'GT3_OPEN', seasonId: '26S1', points: 15, wins: 0, podiums: 1, racesRun: 1 },
-  { driverId: '1177810', seriesId: 'GT3_OPEN', seasonId: 'S4', points: 125, wins: 3, podiums: 5, racesRun: 6 },
-  { driverId: '417177', seriesId: 'GT3_OPEN', seasonId: 'S4', points: 110, wins: 2, podiums: 4, racesRun: 5 },
-  { driverId: '1219984', seriesId: 'GT3_OPEN', seasonId: 'S4', points: 95, wins: 1, podiums: 3, racesRun: 6 },
-  { driverId: '632058', seriesId: 'GT3_OPEN', seasonId: 'S4', points: 70, wins: 0, podiums: 1, racesRun: 4 },
-  { driverId: '1245968', seriesId: 'ROOKIES', seasonId: 'S4', points: 85, wins: 2, podiums: 3, racesRun: 4 },
-  { driverId: '1362776', seriesId: 'ROOKIES', seasonId: 'S4', points: 72, wins: 1, podiums: 2, racesRun: 4 },
-  { driverId: '632058', seriesId: 'ROOKIES', seasonId: 'S4', points: 45, wins: 0, podiums: 1, racesRun: 3 },
-];
+export const MOCK_ENDURANCE_TEAMS: EnduranceTeam[] = [];
+export const MOCK_STANDINGS: Standing[] = [];

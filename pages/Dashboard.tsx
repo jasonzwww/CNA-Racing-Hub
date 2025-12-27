@@ -18,7 +18,7 @@ interface TimeLeft {
 
 const Dashboard: React.FC = () => {
   const { t } = useLanguage();
-  const { visibleDrivers } = useAuth();
+  const { visibleDrivers, isAuthenticated } = useAuth();
   const [localSchedule, setLocalSchedule] = useState<Race[]>([]);
   const [timers, setTimers] = useState<Record<string, TimeLeft | null>>({});
 
@@ -32,7 +32,6 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const getNextRaceForSeries = (seriesId: SeriesId) => {
-    // Merge local and mock
     const allRaces = [...localSchedule, ...MOCK_RACES];
     return allRaces
       .filter(r => r.seriesId === seriesId && r.status === RaceStatus.UPCOMING)
@@ -198,7 +197,12 @@ const Dashboard: React.FC = () => {
             <button className="text-[10px] font-black text-slate-500 hover:text-white transition-colors uppercase tracking-[0.2em]">{t.viewAll}</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MOCK_RACES.filter(r => r.status === RaceStatus.COMPLETED).slice(0, 3).map(race => (
+            {MOCK_RACES.filter(r => r.status === RaceStatus.COMPLETED).slice(0, 3).map(race => {
+                const winnerName = race.winner || 'TBD';
+                // Only show real names if authenticated or if the driver name isn't recognized as a "real" one
+                const displayWinner = isAuthenticated ? winnerName : 'CNA Racer';
+                
+                return (
                 <div key={race.id} className="bg-slate-900 rounded-[28px] border border-slate-800 overflow-hidden group hover:border-red-600/50 transition-all shadow-xl">
                     <div className="h-32 overflow-hidden relative">
                         <img src={race.image} className="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700" />
@@ -210,11 +214,11 @@ const Dashboard: React.FC = () => {
                         <h4 className="font-racing font-bold text-white italic truncate mb-2">{race.track}</h4>
                         <div className="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-widest">
                             <Trophy size={14} className="text-amber-500" />
-                            <span>{t.winner}: <span className="text-white">{race.winner || 'TBD'}</span></span>
+                            <span>{t.winner}: <span className="text-white">{displayWinner}</span></span>
                         </div>
                     </div>
                 </div>
-            ))}
+            )})}
         </div>
       </section>
     </div>
